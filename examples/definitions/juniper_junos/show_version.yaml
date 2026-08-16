@@ -1,0 +1,41 @@
+apiVersion: clisynth.opennv.io/v1alpha1
+kind: OutputFSM
+metadata:
+  name: juniper-junos-show-version
+  version: 1.0.0
+  description: Deterministic Junos show version output for development and tests.
+  labels:
+    vendor: juniper
+    family: junos
+spec:
+  platform: juniper_junos
+  platformAliases:
+    - junos
+    - juniper
+  command: show version
+  commandAliases:
+    - show version | no-more
+  variables:
+    hostname:
+      source: device.name
+      required: true
+    model:
+      source: device.device_type.model
+      default: mx204
+      transform: lower
+    junos_version:
+      source: device.software_version
+      default: 23.4R2-S2.1
+    serial:
+      generator:
+        kind: hex
+        prefix: JN
+        length: 10
+  template: |
+    Hostname: {{ hostname }}
+    Model: {{ model }}
+    Junos: {{ junos_version }}
+    JUNOS OS Kernel 64-bit  [{{ junos_version }}]
+    JUNOS OS libs [{{ junos_version }}]
+    JUNOS OS runtime [{{ junos_version }}]
+    Chassis serial number: {{ serial }}

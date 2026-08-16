@@ -1,0 +1,28 @@
+{
+  "concurrency": 2,
+  "requests": [
+    {
+      "command": "show version",
+      "seed": 42,
+      "device": {
+        "id": "device-0001",
+        "name": "edge-rtr-01",
+        "platform": "cisco_ios",
+        "software_version": "15.9(3)M8",
+        "status": "active",
+        "custom_fields": {"uptime_days": 92}
+      }
+    },
+    {
+      "command": "show version",
+      "seed": 42,
+      "device": {
+        "id": "device-0002",
+        "name": "core-rtr-01",
+        "platform": "juniper_junos",
+        "software_version": "23.4R2-S2.1",
+        "device_type": {"model": "MX204"}
+      }
+    }
+  ]
+}

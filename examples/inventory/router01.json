@@ -1,0 +1,15 @@
+{
+  "id": "device-0001",
+  "name": "edge-rtr-01",
+  "platform": "cisco_ios",
+  "software_version": "15.9(3)M8",
+  "image_file": "flash:c2900-universalk9-mz.SPA.159-3.M8.bin",
+  "status": "active",
+  "role": "edge",
+  "site": {
+    "name": "dfw01"
+  },
+  "custom_fields": {
+    "uptime_days": 92
+  }
+}

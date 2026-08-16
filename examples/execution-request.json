@@ -1,0 +1,31 @@
+{
+  "apiVersion": "v1",
+  "requestId": "req-demo-001",
+  "runId": "run-demo-001",
+  "mode": "emulated",
+  "inventoryRevision": "demo-v1",
+  "packRevision": "outputfsm-demo-v1",
+  "devices": [
+    {
+      "id": "device-dfw-edge-01",
+      "name": "dfw-edge-01",
+      "platform": "cisco_ios",
+      "managementAddress": "192.0.2.11",
+      "role": "edge",
+      "site": "dfw-dc1",
+      "status": "active",
+      "osVersion": "15.9(3)M8",
+      "imageFile": "flash:open-ios-image.bin",
+      "customFields": {
+        "system": {
+          "uptime_seconds": 172801
+        }
+      }
+    }
+  ],
+  "commands": [
+    "show version"
+  ],
+  "concurrency": 64,
+  "timeoutSeconds": 30
+}

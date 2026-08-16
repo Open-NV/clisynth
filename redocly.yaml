@@ -1,0 +1,8 @@
+extends:
+  - recommended
+
+rules:
+  # This API is shipped as a local/container service; localhost is intentional.
+  no-server-example.com: off
+  # Read-only health/catalog operations have no meaningful application 4xx.
+  operation-4xx-response: off

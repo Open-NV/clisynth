@@ -1,0 +1,65 @@
+apiVersion: clisynth.opennv.io/v1alpha1
+kind: OutputFSM
+metadata:
+  name: cisco-ios-show-version
+  version: 1.0.0
+  description: Deterministic Cisco IOS show version output for development and tests.
+  labels:
+    vendor: cisco
+    family: ios
+spec:
+  platform: cisco_ios
+  platformAliases:
+    - ios
+  command: show version
+  commandAliases:
+    - show ver
+  variables:
+    hostname:
+      source: device.name
+      required: true
+      transform: upper
+    software_version:
+      source: device.software_version
+      default: 15.9(3)M8
+    image_file:
+      source: device.image_file
+      default: flash:c2900-universalk9-mz.SPA.159-3.M8.bin
+    uptime_days:
+      source: device.custom_fields.uptime_days
+      default: 31
+    uptime:
+      default: unknown
+    serial:
+      generator:
+        kind: hex
+        prefix: FTX
+        length: 8
+    operational_state:
+      default: down
+  conditions:
+    - when: device.get("status", "active") == "active"
+      set:
+        operational_state: up
+      else:
+        operational_state: administratively down
+  starlark: |
+    def process(device, vars, seed):
+        vars["uptime"] = str(vars["uptime_days"]) + " days"
+        return vars
+  template: |
+    Cisco IOS Software, C2900 Software (C2900-UNIVERSALK9-M), Version {{ software_version }}, RELEASE SOFTWARE (fc2)
+    Technical Support: http://www.cisco.com/techsupport
+    Copyright (c) 1986-2026 by Cisco Systems, Inc.
+    Compiled Fri 01-Aug-26 00:00 by clisynth
+
+    ROM: System Bootstrap, Version 15.0(1r)M16, RELEASE SOFTWARE (fc1)
+    {{ hostname }} uptime is {{ uptime }}
+    System returned to ROM by power-on
+    System image file is "{{ image_file }}"
+    Last reload type: Normal Reload
+
+    cisco CISCO2901/K9 (revision 1.0) with 491520K/32768K bytes of memory.
+    Processor board ID {{ serial }}
+    Configuration register is 0x2102
+    Operational state is {{ operational_state }}
