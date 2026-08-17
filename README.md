@@ -36,7 +36,9 @@ replacement for integration testing against vendor software.
 
 ## Quick start
 
-Requirements: Go 1.25 or a Go installation with automatic toolchain download.
+Requirements: Go 1.26.6 or a Go installation with automatic toolchain download.
+The module retains Go 1.25 language compatibility while selecting the patched
+Go 1.26.6 toolchain for secure builds.
 
 ```bash
 go test ./...

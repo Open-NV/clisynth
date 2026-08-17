@@ -15,4 +15,5 @@ Output definitions should use invented hostnames and RFC 5737 documentation
 addresses. Describe the platform/version shape they model, and keep aliases
 explicit rather than relying on fuzzy command matching.
 
-Contributions are accepted under the Apache-2.0 license.
+Contributions are accepted under the Apache-2.0 license. Participation is
+governed by the [OpenNV Code of Conduct](CODE_OF_CONDUCT.md).
